@@ -1,4 +1,4 @@
-package com.enterprise.charky.mareco;
+package com.enterprise.charky.mareco.ui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,9 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.enterprise.charky.mareco.util.NavigationListAdapter;
+import com.enterprise.charky.mareco.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -90,8 +92,10 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
+        LinearLayout linearLayout = (LinearLayout) inflater.inflate(
                 R.layout.drawer_main, container, false);
+
+        mDrawerListView = (ListView) linearLayout.findViewById(R.id.fragment_listview);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,7 +103,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        return mDrawerListView;
+        return linearLayout;
     }
 
     public boolean isDrawerOpen() {
@@ -111,13 +115,13 @@ public class NavigationDrawerFragment extends Fragment {
      *
      * @param fragmentId   The android:id of this fragment in its activity's layout.
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
-     * @param menuListAdapter The ListAdapter for handling listview-items
+     * @param navigationListAdapter The ListAdapter for handling listview-items
      */
-    public void setUp(int fragmentId, DrawerLayout drawerLayout, MenuListAdapter menuListAdapter) {
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, NavigationListAdapter navigationListAdapter) {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
-        mDrawerListView.setAdapter(menuListAdapter);
+        mDrawerListView.setAdapter(navigationListAdapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         // set a custom shadow that overlays the main content when the drawer opens
@@ -258,9 +262,7 @@ public class NavigationDrawerFragment extends Fragment {
     private void showGlobalContextActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
-        // actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
-        actionBar.setIcon(R.mipmap.ic_launcher);
     }
 
     private ActionBar getActionBar() {

@@ -13,6 +13,10 @@ import android.support.v4.widget.DrawerLayout;
 
 import com.enterprise.charky.mareco.irclibrary.SamsungIRCodes;
 import com.enterprise.charky.mareco.irtransmitter.IRProvider;
+import com.enterprise.charky.mareco.irtransmitter.IRTransmitter;
+import com.enterprise.charky.mareco.ui.NavigationDrawerFragment;
+import com.enterprise.charky.mareco.ui.PlaceholderFragment;
+import com.enterprise.charky.mareco.util.NavigationListAdapter;
 
 import java.util.ArrayList;
 
@@ -30,25 +34,37 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+    /**
+     * IRTransmitter for Sending IRCodes
+     */
+    public IRTransmitter irTransmitter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Get NavigationDrawer
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+
+        // TODO: Check delete later, no need at the moment?
         mTitle = getTitle();
 
+        // Create IRProvider List
         ArrayList<IRProvider> IRProviders = new ArrayList<IRProvider>();
         IRProviders.add(new IRProvider("Samsung TV","Smart TV 2012 and Later",
                 R.drawable.ic_tv_black_48dp, new SamsungIRCodes()));
+
+        // Initialize IR Transmitter
+        //Create IRTransmitter
+        irTransmitter = new IRTransmitter(this);
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout),
-                new MenuListAdapter(this,IRProviders));
+                new NavigationListAdapter(this,IRProviders));
     }
 
     @Override
@@ -80,45 +96,4 @@ public class MainActivity extends ActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
 }

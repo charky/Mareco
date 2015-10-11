@@ -10,19 +10,10 @@ import android.hardware.ConsumerIrManager;
 public class IRTransmitter {
 
     private ConsumerIrManager mCIR;
-    private IRCodes IRCodes;
 
-    public IRTransmitter(Activity activity,IRCodes IRCodes){
+    public IRTransmitter(Activity activity){
         // Get a reference to the ConsumerIrManager
         mCIR = (ConsumerIrManager)activity.getSystemService(Context.CONSUMER_IR_SERVICE);
-        this.IRCodes = IRCodes;
-    }
-
-    public IRCodes getIRCodes(){
-        return IRCodes;
-    }
-    public void setIRCodes(IRCodes IRCodes){
-        this.IRCodes = IRCodes;
     }
 
     public void sendIR(IRCommand irCommand) throws NoIREmitterException, IllegalArgumentException{

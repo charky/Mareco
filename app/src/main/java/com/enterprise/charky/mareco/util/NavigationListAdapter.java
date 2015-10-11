@@ -1,4 +1,4 @@
-package com.enterprise.charky.mareco;
+package com.enterprise.charky.mareco.util;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.enterprise.charky.mareco.R;
 import com.enterprise.charky.mareco.irtransmitter.IRProvider;
 
 import java.util.ArrayList;
@@ -15,12 +16,12 @@ import java.util.ArrayList;
 /**
  * Created by charky on 11.10.15.
  */
-public class MenuListAdapter extends BaseAdapter {
+public class NavigationListAdapter extends BaseAdapter {
     private Context context;
 
     private ArrayList<IRProvider> mIRProviders;
 
-    public MenuListAdapter(Context pContext, ArrayList<IRProvider> pIRProviders) {
+    public NavigationListAdapter(Context pContext, ArrayList<IRProvider> pIRProviders) {
         context = pContext;
         mIRProviders = pIRProviders;
     }
