@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="@drawable/drawer_list_item_style">
 
     <ImageView
         android:id="@+id/icon"
@@ -26,7 +27,6 @@
             android:ellipsize="end"
             android:textSize="17dp"
             android:singleLine="true" />
-
 
     </LinearLayout>
 </LinearLayout>

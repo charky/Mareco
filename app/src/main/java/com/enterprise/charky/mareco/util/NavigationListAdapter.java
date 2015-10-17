@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.enterprise.charky.mareco.R;
-import com.enterprise.charky.mareco.irtransmitter.IRCodes;
+
 
 import java.util.ArrayList;
 
@@ -19,36 +19,38 @@ import java.util.ArrayList;
 public class NavigationListAdapter extends BaseAdapter {
     private Context context;
 
-    private ArrayList<IRCodes> mIRCodes;
+    private ArrayList<NavigationListItem> mNavigationListItem;
 
-    public NavigationListAdapter(Context pContext, ArrayList<IRCodes> pIRCodes) {
+    public NavigationListAdapter(Context pContext, ArrayList<NavigationListItem> pNavigationListItem) {
         context = pContext;
-        mIRCodes = pIRCodes;
+        mNavigationListItem = pNavigationListItem;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context
                 .LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.drawer_list_item, parent, false);
+        NavigationListItem pNavigationListItem = mNavigationListItem.get(position);
+
+
+        View itemView = inflater.inflate(pNavigationListItem.LayoutID, parent, false);
 
         TextView txtTitle = (TextView) itemView.findViewById(R.id.title);
         ImageView imgIcon = (ImageView) itemView.findViewById(R.id.icon);
 
-        IRCodes pIRCodes = mIRCodes.get(position);
-        txtTitle.setText(pIRCodes.getTitle());
-        imgIcon.setImageResource(pIRCodes.getIcon());
+        txtTitle.setText(pNavigationListItem.LabelText);
+        imgIcon.setImageResource(pNavigationListItem.IconID);
 
         return itemView;
     }
 
     @Override
     public int getCount() {
-        return mIRCodes.size();
+        return mNavigationListItem.size();
     }
 
     @Override
-    public IRCodes getItem(int position) {
-        return mIRCodes.get(position);
+    public NavigationListItem getItem(int position) {
+        return mNavigationListItem.get(position);
     }
 
     @Override

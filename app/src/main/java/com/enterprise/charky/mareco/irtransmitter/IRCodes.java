@@ -9,10 +9,6 @@ import java.util.HashMap;
  */
 public abstract class IRCodes {
 
-    // IR Code Information
-    public abstract String getTitle();
-    public abstract int getIcon();
-
     // Vital Buttons
     public static final int IRC_POWER = 100;
     public abstract IRCommand getIRC_POWER();

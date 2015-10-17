@@ -1,6 +1,8 @@
 package com.enterprise.charky.mareco.ui;
 
 import android.os.Bundle;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,7 @@ public class BasicKeyFragment extends ExtendedFragment{
     private IRCodes irCodes;
 
     public BasicKeyFragment(){
-
+        this.setEnterTransition(new Slide(Gravity.BOTTOM));
     }
 
     @Override
