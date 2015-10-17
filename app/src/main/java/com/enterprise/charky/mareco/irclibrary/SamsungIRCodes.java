@@ -1,9 +1,13 @@
 package com.enterprise.charky.mareco.irclibrary;
 
+import com.enterprise.charky.mareco.R;
 import com.enterprise.charky.mareco.irtransmitter.IRCodes;
 import com.enterprise.charky.mareco.irtransmitter.IRCommand;
 
 public class SamsungIRCodes extends IRCodes {
+
+	public String getTitle() {return "Samsung TV"; }
+	public int getIcon() {return R.drawable.ic_tv_black_48dp;}
 
 	public static final int BT_0_frequency = 38380;
 	public static final int[] BT_0_codes = new int[] {4446, 4446, 572, 1664, 572, 1664, 572, 1664, 572, 572, 572, 572, 572, 572, 572, 572, 572, 572, 572, 1664, 572, 1664, 572, 1664, 572, 572, 572, 572, 572, 572, 572, 572, 572, 572, 572, 1664, 572, 572, 572, 572, 572, 572, 572, 1664, 572, 572, 572, 572, 572, 572, 572, 572, 572, 1664, 572, 1664, 572, 1664, 572, 572, 572, 1664, 572, 1664, 572, 1664, 572, 46592};

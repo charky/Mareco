@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.enterprise.charky.mareco.R;
-import com.enterprise.charky.mareco.irtransmitter.IRProvider;
+import com.enterprise.charky.mareco.irtransmitter.IRCodes;
 
 import java.util.ArrayList;
 
@@ -19,11 +19,11 @@ import java.util.ArrayList;
 public class NavigationListAdapter extends BaseAdapter {
     private Context context;
 
-    private ArrayList<IRProvider> mIRProviders;
+    private ArrayList<IRCodes> mIRCodes;
 
-    public NavigationListAdapter(Context pContext, ArrayList<IRProvider> pIRProviders) {
+    public NavigationListAdapter(Context pContext, ArrayList<IRCodes> pIRCodes) {
         context = pContext;
-        mIRProviders = pIRProviders;
+        mIRCodes = pIRCodes;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -32,26 +32,23 @@ public class NavigationListAdapter extends BaseAdapter {
         View itemView = inflater.inflate(R.layout.drawer_list_item, parent, false);
 
         TextView txtTitle = (TextView) itemView.findViewById(R.id.title);
-        TextView txtSubTitle = (TextView) itemView.findViewById(R.id.subtitle);
         ImageView imgIcon = (ImageView) itemView.findViewById(R.id.icon);
 
-        IRProvider pIRProvider = mIRProviders.get(position);
-
-        txtTitle.setText(pIRProvider.irpTitle);
-        txtSubTitle.setText(pIRProvider.irpSubTitle);
-        imgIcon.setImageResource(pIRProvider.irpIcon);
+        IRCodes pIRCodes = mIRCodes.get(position);
+        txtTitle.setText(pIRCodes.getTitle());
+        imgIcon.setImageResource(pIRCodes.getIcon());
 
         return itemView;
     }
 
     @Override
     public int getCount() {
-        return mIRProviders.size();
+        return mIRCodes.size();
     }
 
     @Override
-    public IRProvider getItem(int position) {
-        return mIRProviders.get(position);
+    public IRCodes getItem(int position) {
+        return mIRCodes.get(position);
     }
 
     @Override

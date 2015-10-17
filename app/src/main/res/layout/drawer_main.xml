@@ -5,6 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".NavigationDrawerFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:padding="20dp"
+        android:background="@color/primary">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="96dp"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_home_white_48dp"
+            android:textColor="@android:color/white"
+            android:textSize="48dp"
+            android:text="@string/nav_home_label"/>
+
+    </RelativeLayout>
     <ListView
           android:id="@+id/fragment_listview"
           android:layout_width="match_parent"
